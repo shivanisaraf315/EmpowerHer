@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Coffee Menu</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 30px;
+        background: #f5f0eb;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 32px;
+        color: #3a2e2e;
+    }
+
+    /* GRID CONTAINER */
+    .menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    /* CARD */
+    .card {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+    }
+
+    /* title + price row */
+    .top-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .price {
+        color: #d2a443;
+        font-weight: bold;
+    }
+
+    .desc {
+        color: #6a6a6a;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    /* MEDIA QUERIES */
+
+    /* Medium screen → 2 per row */
+    @media (max-width: 900px) {
+        .menu {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Small screen → 1 per row */
+    @media (max-width: 600px) {
+        .menu {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+</style>
+
+</head>
+<body>
+
+<h1>Coffee Menu</h1>
+
+<div class="menu">
+
+    <div class="card">
+        <div class="top-row">
+            <span>Cappuccino</span>
+            <span class="price">$49</span>
+        </div>
+        <p class="desc">Usage of the Internet is becoming more common due to rapid advance.</p>
+    </div>
+
+    <div class="card">
+        <div class="top-row">
+            <span>Americano</span>
+            <span class="price">$49</span>
+        </div>
+        <p class="desc">Usage of the Internet is becoming more common due to rapid advance.</p>
+    </div>
+
+    <div class="card">
+        <div class="top-row">
+            <span>Espresso</span>
+            <span class="price">$49</span>
+        </div>
+        <p class="desc">Usage of the Internet is becoming more common due to rapid advance.</p>
+    </div>
+
+    <div class="card">
+        <div class="top-row">
+            <span>Macchiato</span>
+            <span class="price">$49</span>
+        </div>
+        <p class="desc">Usage of the Internet is becoming more common due to rapid advance.</p>
+    </div>
+
+    <div class="card">
+        <div class="top-row">
+            <span>Mocha</span>
+            <span class="price">$49</span>
+        </div>
+        <p class="desc">Usage of the Internet is becoming more common due to rapid advance.</p>
+    </div>
+
+    <div class="card">
+        <div class="top-row">
+            <span>Coffee Latte</span>
+            <span class="price">$49</span>
+        </div>
+        <p class="desc">Usage of the Internet is becoming more common due to rapid advance.</p>
+    </div>
+
+    <div class="card">
+        <div class="top-row">
+            <span>Piccolo Latte</span>
+            <span class="price">$49</span>
+        </div>
+        <p class="desc">Usage of the Internet is becoming more common due to rapid advance.</p>
+    </div>
+
+    <div class="card">
+        <div class="top-row">
+            <span>Ristretto</span>
+            <span class="price">$49</span>
+        </div>
+        <p class="desc">Usage of the Internet is becoming more common due to rapid advance.</p>
+    </div>
+
+    <div class="card">
+        <div class="top-row">
+            <span>Affogato</span>
+            <span class="price">$49</span>
+        </div>
+        <p class="desc">Usage of the Internet is becoming more common due to rapid advance.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
