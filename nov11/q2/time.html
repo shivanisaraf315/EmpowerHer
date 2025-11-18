@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weekly Schedule</title>
+  <style>
+    /* ---------- Page layout ---------- */
+    :root{
+      --time-width: 120px;
+      --gap: 18px;
+      --cell-height: 48px;
+      --pill-radius: 999px;
+      --bg: #fbfbfb;
+      --accent-blue: #c6f1f6;
+      --accent-pink: #ffdff0;
+      --accent-yellow: #fff1c9;
+      --text-dark: #153243;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text-dark);
+      display:flex;
+      justify-content:center;
+      padding:28px;
+    }
+
+    .container{
+      width:100%;
+      max-width:1050px;
+      background:white;
+      border-radius:12px;
+      padding:28px;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+      border:1px solid rgba(0,0,0,0.04);
+    }
+
+    /* ---------- Title ---------- */
+    .title{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .title h1{
+      margin:0;
+      font-size:28px;
+      letter-spacing:0.2px;
+    }
+
+    /* ---------- Grid (time column + 5 weekday columns) ---------- */
+    .schedule-grid{
+      display:grid;
+      grid-template-columns: var(--time-width) repeat(5, 1fr);
+      gap: var(--gap);
+      align-items:start;
+      padding: 8px 4px 20px 4px;
+    }
+
+    /* header row labels (empty top-left cell then weekday labels) */
+    .top-left { /* empty box for spacing where time label sits */ height: 12px; }
+    .weekday {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:44px;
+      font-weight:700;
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+      color:var(--text-dark);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04) inset;
+    }
+
+    /* time column (left) stacked vertical pills */
+    .times {
+      display:flex;
+      flex-direction:column;
+      gap: var(--gap);
+      padding-top: 12px;
+    }
+    .time-pill{
+      height:var(--cell-height);
+      min-height:var(--cell-height);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:var(--pill-radius);
+      background:var(--accent-blue);
+      font-weight:700;
+      color:#085a63;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.02);
+    }
+
+    /* Each weekday column container (stack of pill slots) */
+    .day-column {
+      display:flex;
+      flex-direction:column;
+      gap: var(--gap);
+      padding-top: 12px;
+    }
+
+    .slot {
+      height:var(--cell-height);
+      min-height:var(--cell-height);
+      border-radius:var(--pill-radius);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+      color:#233;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.04);
+    }
+
+    /* alternate colors like the example (pink/yellow/pink/yellow...) */
+    .slot.pink{ background: var(--accent-pink); color:#40263a; }
+    .slot.yellow{ background: var(--accent-yellow); color:#5b4b22; }
+
+    /* make spacing consistent on small screens */
+    @media (max-width:880px){
+      :root{ --time-width: 92px; --cell-height:40px; --gap:12px }
+      .container{ padding:16px }
+      .title h1{ font-size:22px }
+    }
+
+    /* Note bar at bottom spanning full width */
+    .note{
+      margin-top:22px;
+      height:36px;
+      border-radius:18px;
+      background:var(--accent-blue);
+      display:flex;
+      align-items:center;
+      padding:8px 16px;
+      color:#034d53;
+      font-weight:700;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+    }
+
+    /* small helper for empty/placeholder text inside slots */
+    .placeholder{
+      opacity:0.75;
+      font-weight:600;
+      font-size:14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">
+      <h1>Weekly Schedule</h1>
+    </div>
+
+    <div class="schedule-grid" role="table" aria-label="Weekly schedule">
+      <!-- top-left empty cell (for spacing where times column header would be) -->
+      <div class="top-left" aria-hidden="true"></div>
+
+      <!-- Weekday headers -->
+      <div class="weekday">Monday</div>
+      <div class="weekday">Tuesday</div>
+      <div class="weekday">Wednesday</div>
+      <div class="weekday">Thursday</div>
+      <div class="weekday">Friday</div>
+
+      <!-- Times column -->
+      <div class="times" role="rowheader" aria-label="Times">
+        <div class="time-pill">08:00</div>
+        <div class="time-pill">09:00</div>
+        <div class="time-pill">10:00</div>
+        <div class="time-pill">11:00</div>
+        <div class="time-pill">12:00</div>
+        <div class="time-pill">13:00</div>
+        <div class="time-pill">14:00</div>
+        <div class="time-pill">15:00</div>
+        <div class="time-pill">16:00</div>
+      </div>
+
+      <!-- Monday column (9 slots) -->
+      <div class="day-column" aria-label="Monday column">
+        <div class="slot pink"><span class="placeholder">Math</span></div>
+        <div class="slot yellow"><span class="placeholder">English</span></div>
+        <div class="slot pink"><span class="placeholder">EVS</span></div>
+        <div class="slot yellow"><span class="placeholder">Computer</span></div>
+        <div class="slot pink"><span class="placeholder">Lunch</span></div>
+        <div class="slot yellow"><span class="placeholder">PT</span></div>
+        <div class="slot pink"><span class="placeholder">Project</span></div>
+        <div class="slot yellow"><span class="placeholder">Revision</span></div>
+        <div class="slot pink"><span class="placeholder">Art</span></div>
+      </div>
+
+      <!-- Tuesday -->
+      <div class="day-column" aria-label="Tuesday column">
+        <div class="slot yellow"><span class="placeholder">Science</span></div>
+        <div class="slot pink"><span class="placeholder">Math</span></div>
+        <div class="slot yellow"><span class="placeholder">English</span></div>
+        <div class="slot pink"><span class="placeholder">Computer</span></div>
+        <div class="slot yellow"><span class="placeholder">Lunch</span></div>
+        <div class="slot pink"><span class="placeholder">Drawing</span></div>
+        <div class="slot yellow"><span class="placeholder">PT</span></div>
+        <div class="slot pink"><span class="placeholder">Revision</span></div>
+        <div class="slot yellow"><span class="placeholder">Music</span></div>
+      </div>
+
+      <!-- Wednesday -->
+      <div class="day-column" aria-label="Wednesday column">
+        <div class="slot pink"><span class="placeholder">English</span></div>
+        <div class="slot yellow"><span class="placeholder">Math</span></div>
+        <div class="slot pink"><span class="placeholder">Science</span></div>
+        <div class="slot yellow"><span class="placeholder">Computer</span></div>
+        <div class="slot pink"><span class="placeholder">Lunch</span></div>
+        <div class="slot yellow"><span class="placeholder">PT</span></div>
+        <div class="slot pink"><span class="placeholder">Library</span></div>
+        <div class="slot yellow"><span class="placeholder">Revision</span></div>
+        <div class="slot pink"><span class="placeholder">Art</span></div>
+      </div>
+
+      <!-- Thursday -->
+      <div class="day-column" aria-label="Thursday column">
+        <div class="slot yellow"><span class="placeholder">Math</span></div>
+        <div class="slot pink"><span class="placeholder">Science</span></div>
+        <div class="slot yellow"><span class="placeholder">English</span></div>
+        <div class="slot pink"><span class="placeholder">Computer</span></div>
+        <div class="slot yellow"><span class="placeholder">Lunch</span></div>
+        <div class="slot pink"><span class="placeholder">PT</span></div>
+        <div class="slot yellow"><span class="placeholder">Activity</span></div>
+        <div class="slot pink"><span class="placeholder">Revision</span></div>
+        <div class="slot yellow"><span class="placeholder">Counselling</span></div>
+      </div>
+
+      <!-- Friday -->
+      <div class="day-column" aria-label="Friday column">
+        <div class="slot pink"><span class="placeholder">Science</span></div>
+        <div class="slot yellow"><span class="placeholder">Math</span></div>
+        <div class="slot pink"><span class="placeholder">English</span></div>
+        <div class="slot yellow"><span class="placeholder">Computer</span></div>
+        <div class="slot pink"><span class="placeholder">Lunch</span></div>
+        <div class="slot yellow"><span class="placeholder">PT</span></div>
+        <div class="slot pink"><span class="placeholder">Project</span></div>
+        <div class="slot yellow"><span class="placeholder">Revision</span></div>
+        <div class="slot pink"><span class="placeholder">Show & Tell</span></div>
+      </div>
+    </div>
+
+    <div class="note"><strong>Note:</strong>&nbsp;&nbsp;Use this area for any special reminders or announcements.</div>
+  </div>
+</body>
+</html>

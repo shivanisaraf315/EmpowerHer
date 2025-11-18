@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Masai Calculator (Layout Only)</title>
+  <style>
+    /* ---------- Page reset & fonts ---------- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:#fafafa;
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color:#0b2f2f;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:36px 18px;
+    }
+
+    /* ---------- Card container ---------- */
+    .wrapper{
+      width:100%;
+      max-width:1000px;
+      background:transparent;
+      border-radius:10px;
+      padding:28px;
+    }
+
+    h1{
+      text-align:center;
+      margin:12px 0 28px;
+      color:#0b7b73;
+      font-size:34px;
+      letter-spacing:0.4px;
+      font-weight:700;
+    }
+
+    /* center calculator area */
+    .calc-area{
+      display:flex;
+      justify-content:center;
+    }
+
+    /* ---------- Calculator box ---------- */
+    .calculator{
+      width:260px;
+      background:#ffffff;
+      border-radius:6px;
+      padding:18px;
+      box-shadow: 0 10px 22px rgba(10,10,10,0.06);
+      border:1px solid rgba(0,0,0,0.04);
+    }
+
+    /* display (just visual, no JS needed) */
+    .display{
+      height:42px;
+      background: #f8f8f8;
+      border-radius:8px;
+      margin-bottom:12px;
+      box-shadow: inset 0 2px 0 rgba(0,0,0,0.02);
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      padding:8px 12px;
+      font-size:18px;
+      color:#222;
+      overflow:hidden;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+
+    /* ---------- Grid of buttons ---------- */
+    .keys{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+    }
+
+    /* common button style */
+    .key{
+      height:48px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:8px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.06);
+      font-weight:700;
+      font-size:16px;
+      cursor:default; /* layout only */
+      box-shadow: 0 6px 10px rgba(12,12,12,0.04);
+      user-select:none;
+    }
+
+    /* number keys (light) */
+    .key.num{
+      background: #ffffff;
+      color:#222;
+    }
+
+    /* operator column (rightmost) */
+    .key.op{
+      background: #0b0b0b;
+      color: #fff;
+      box-shadow: 0 6px 12px rgba(11,11,11,0.18);
+      border: none;
+      border-radius:6px;
+      height:48px;
+    }
+
+    /* equals dark but square-ish */
+    .key.eq{
+      background:#000;
+      color:#fff;
+      border-radius:6px;
+    }
+
+    /* clear (C) red */
+    .key.clear{
+      background:#ff3b30;
+      color:#fff;
+      border:none;
+      box-shadow: 0 6px 10px rgba(255,59,48,0.18);
+    }
+
+    /* zero button spans two columns to match typical layout */
+    .key.zero{
+      grid-column: span 2;
+      justify-content:flex-start;
+      padding-left:26px;
+    }
+
+    /* small responsive adjustments */
+    @media (max-width:420px){
+      .calculator{ width:92%; max-width:320px; }
+      .key{ height:44px; font-size:15px; }
+      .display{ height:40px; font-size:16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Masai Calculator</h1>
+
+    <div class="calc-area">
+      <div class="calculator" role="group" aria-label="Masai calculator layout">
+        <div class="display" aria-hidden="true"> <!-- visual display only -->
+          <!-- placeholder text -->
+          0
+        </div>
+
+        <div class="keys">
+          <!-- row 1 -->
+          <div class="key num">1</div>
+          <div class="key num">2</div>
+          <div class="key num">3</div>
+          <div class="key op">+</div>
+
+          <!-- row 2 -->
+          <div class="key num">4</div>
+          <div class="key num">5</div>
+          <div class="key num">6</div>
+          <div class="key op">-</div>
+
+          <!-- row 3 -->
+          <div class="key num">7</div>
+          <div class="key num">8</div>
+          <div class="key num">9</div>
+          <div class="key op">×</div>
+
+          <!-- row 4 -->
+          <div class="key clear">C</div>
+          <div class="key zero">0</div>
+          <div class="key eq">=</div>
+          <div class="key op">÷</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

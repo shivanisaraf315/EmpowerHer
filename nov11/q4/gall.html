@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Investors Grid — Layout Only</title>
+  <style>
+    /* Reset & base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:#f6f7fb;
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color:#122;
+      display:flex;
+      justify-content:center;
+      padding:32px;
+    }
+
+    .page {
+      width:100%;
+      max-width:1100px;
+      background: #fff;
+      border-radius:10px;
+      padding:28px;
+      box-shadow: 0 10px 30px rgba(15,20,30,0.06);
+      border:1px solid rgba(0,0,0,0.04);
+    }
+
+    h2{ margin:0 0 18px; color:#1b3740; font-size:20px; font-weight:700; }
+
+    /* grid of cards */
+    .grid {
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:24px;
+      align-items:start;
+    }
+
+    /* card */
+    .card {
+      background:#fff;
+      border-radius:10px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 8px 20px rgba(10,20,30,0.04);
+      display:flex;
+      flex-direction:column;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(10,20,30,0.09);
+    }
+
+    /* image area — tall photos */
+    .photo {
+      width:100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display:block;
+      background: #e9eef0;
+    }
+
+    /* info area */
+    .info {
+      padding:16px;
+      background: linear-gradient(#fff,#fff);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:stretch;
+    }
+
+    .name{
+      font-weight:700;
+      font-size:15px;
+      text-align:center;
+      color:#101827;
+      margin:0;
+    }
+    .role{
+      font-size:12px;
+      color:#65707a;
+      text-align:center;
+      margin:0;
+    }
+
+    /* logo row */
+    .brand {
+      margin-top:6px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
+      padding-top:6px;
+      border-top:1px solid rgba(16,24,32,0.04);
+    }
+    .brand img { height:28px; width:auto; display:block; }
+
+    /* small badge floating left (optional) */
+    .badge {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width:40px;
+      height:40px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: #0b2330;
+      color:#fff;
+      font-weight:700;
+      box-shadow: 0 6px 16px rgba(2,10,20,0.12);
+    }
+
+    /* responsive */
+    @media (max-width:980px){
+      .grid { grid-template-columns: repeat(2, 1fr); gap:18px; }
+    }
+    @media (max-width:560px){
+      .grid { grid-template-columns: repeat(1, 1fr); }
+      .page { padding:18px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" aria-label="Investors grid layout">
+    <h2>Investors / Founders</h2>
+
+    <section class="grid">
+      <!-- Card 1 -->
+      <article class="card" role="article">
+        <img class="photo" src="https://via.placeholder.com/600x450.png?text=Vijay+Shekhar+Sharma" alt="Vijay Shekhar Sharma photo">
+        <div class="info">
+          <p class="name">Vijay Shekhar Sharma</p>
+          <p class="role">Founder &amp; CEO</p>
+          <div class="brand">
+            <img src="https://via.placeholder.com/120x32.png?text=Paytm" alt="Paytm logo">
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card">
+        <img class="photo" src="https://via.placeholder.com/600x450.png?text=Kunal+Shah" alt="Kunal Shah photo">
+        <div class="info">
+          <p class="name">Kunal Shah</p>
+          <p class="role">Founder</p>
+          <div class="brand">
+            <img src="https://via.placeholder.com/120x32.png?text=CRED" alt="CRED logo">
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card">
+        <img class="photo" src="https://via.placeholder.com/600x450.png?text=Amrish+Rau" alt="Amrish Rau photo">
+        <div class="info">
+          <p class="name">Amrish Rau</p>
+          <p class="role">CEO</p>
+          <div class="brand">
+            <img src="https://via.placeholder.com/120x32.png?text=Pine+Labs" alt="Pine Labs logo">
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card">
+        <img class="photo" src="https://via.placeholder.com/600x450.png?text=Sampad+Swain" alt="Sampad Swain photo">
+        <div class="info">
+          <p class="name">Sampad Swain</p>
+          <p class="role">Co-Founder &amp; CEO</p>
+          <div class="brand">
+            <img src="https://via.placeholder.com/120x32.png?text=Instamojo" alt="Instamojo logo">
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="card">
+        <img class="photo" src="https://via.placeholder.com/600x450.png?text=Ankush+Sachdeva" alt="Ankush Sachdeva photo">
+        <div class="info">
+          <p class="name">Ankush Sachdeva</p>
+          <p class="role">Co-Founder &amp; CEO</p>
+          <div class="brand">
+            <img src="https://via.placeholder.com/120x32.png?text=ShareChat" alt="ShareChat logo">
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="card">
+        <img class="photo" src="https://via.placeholder.com/600x450.png?text=Bhanu+Pratap+Singh" alt="Bhanu Pratap Singh photo">
+        <div class="info">
+          <p class="name">Bhanu Pratap Singh</p>
+          <p class="role">Co-Founder &amp; CTO</p>
+          <div class="brand">
+            <img src="https://via.placeholder.com/120x32.png?text=ShareChat" alt="ShareChat logo">
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 7 -->
+      <article class="card">
+        <img class="photo" src="https://via.placeholder.com/600x450.png?text=Farid+Ahsan" alt="Farid Ahsan photo">
+        <div class="info">
+          <p class="name">Farid Ahsan</p>
+          <p class="role">Co-Founder &amp; COO</p>
+          <div class="brand">
+            <img src="https://via.placeholder.com/120x32.png?text=ShareChat" alt="ShareChat logo">
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 8 -->
+      <article class="card">
+        <img class="photo" src="https://via.placeholder.com/600x450.png?text=Amit+Kumar+Agarwal" alt="Amit Kumar Agarwal photo">
+        <div class="info">
+          <p class="name">Amit Kumar Agarwal</p>
+          <p class="role">Founder &amp; CEO</p>
+          <div class="brand">
+            <img src="https://via.placeholder.com/120x32.png?text=NoBroker" alt="NoBroker logo">
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
