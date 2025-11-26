@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic To-Do List</title>
+  <style>
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+    li {
+      margin: 4px 0;
+    }
+    button {
+      margin-left: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>To-Do List</h2>
+
+  <input id="taskInput" type="text" placeholder="Enter a task">
+  <button id="addTaskBtn">Add Task</button>
+
+  <ul id="taskList"></ul>
+
+  <script src="script.js"></script>
+</body>
+</html>
