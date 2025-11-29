@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Book Management — Admin</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+<a href="index.html" class="logo">🏠 Home</a>
+<h2>Book Management Page</h2>
+<a href="#" id="showAll" class="small-link">Show All</a>
+</header>
+
+
+<main class="container">
+<section class="card form-card">
+<h3>Add Book</h3>
+<form id="bookForm">
+<label>Title
+<input type="text" id="title" required />
+</label>
+<label>Author
+<input type="text" id="author" required />
+</label>
+<label>Category
+<select id="category">
+<option value="Fiction">Fiction</option>
+<option value="Comedy">Comedy</option>
+<option value="Technical">Technical</option>
+</select>
+</label>
+<div class="form-actions">
+<button type="submit" class="btn">Add Book</button>
+<button type="button" id="clearBtn" class="btn ghost">Clear</button>
+</div>
+</form>
+
+
+<div class="controls">
+<div>
+<button id="sortBtn" class="btn small">Sort by Title: A → Z</button>
+</div>
+<div>
+<label>Filter by Category
+<select id="filterSelect">
+<option value="All">All</option>
+<option value="Fiction">Fiction</option>
+<option value="Comedy">Comedy</option>
+<option value="Technical">Technical</option>
+</select>
+</label>
+</div>
+</div>
+</section>
+
+
+<section>
+<h3 style="text-align:center;margin:10px 0;">Books</h3>
+<div id="booksGrid" class="grid"></div>
+</section>
+</main>
+
+
+<script src="script.js"></script>
+</body>
+</html>
