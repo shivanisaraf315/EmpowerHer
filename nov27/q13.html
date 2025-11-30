@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L0 - Save and Load User Notes</title>
+</head>
+<body>
+  <h1>User Notes</h1>
+
+  <!-- Text area for notes -->
+  <textarea id="notesArea" rows="8" cols="40"
+    placeholder="Type your notes here..."></textarea>
+  <br /><br />
+
+  <!-- Action buttons -->
+  <button id="saveBtn">Save Notes</button>
+  <button id="loadBtn">Load Notes</button>
+  <button id="clearBtn">Clear Notes</button>
+
+  <script>
+    const NOTES_KEY = "userNotes";
+    const notesArea = document.getElementById("notesArea");
+    const saveBtn = document.getElementById("saveBtn");
+    const loadBtn = document.getElementById("loadBtn");
+    const clearBtn = document.getElementById("clearBtn");
+
+    // 1. On page load, automatically load saved notes if they exist
+    window.addEventListener("load", function () {
+      const savedNotes = localStorage.getItem(NOTES_KEY);
+
+      if (savedNotes !== null) {
+        notesArea.value = savedNotes;
+      }
+    });
+
+    // 2. Save notes to localStorage (with validation)
+    saveBtn.addEventListener("click", function () {
+      const text = notesArea.value.trim();
+
+      // Validation: do not allow saving empty notes
+      if (text === "") {
+        alert("Cannot save empty notes. Please type something first.");
+        return;
+      }
+
+      localStorage.setItem(NOTES_KEY, text);
+      alert("Notes saved successfully.");
+    });
+
+    // 3. Load notes from localStorage when "Load Notes" is clicked
+    loadBtn.addEventListener("click", function () {
+      const savedNotes = localStorage.getItem(NOTES_KEY);
+
+      if (savedNotes === null) {
+        alert("No saved notes found.");
+      } else {
+        notesArea.value = savedNotes;
+      }
+    });
+
+    // 4. Clear notes from localStorage and from the text area
+    clearBtn.addEventListener("click", function () {
+      localStorage.removeItem(NOTES_KEY);
+      notesArea.value = "";
+      alert("Saved notes cleared.");
+    });
+  </script>
+</body>
+</html>

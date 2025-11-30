@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Enhanced Todo List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    h1 {
+      text-align: center;
+    }
+    .controls {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 6px 8px;
+    }
+    button {
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 6px 8px;
+      margin: 10px 0 15px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+    .task-text.completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <h1>Todo List</h1>
+
+  <!-- Add new task -->
+  <div class="controls">
+    <input id="taskInput" type="text" placeholder="Enter task" />
+    <button id="addBtn">Add</button>
+  </div>
+
+  <!-- Search bar -->
+  <input id="searchInput" type="text" placeholder="Search tasks" />
+
+  <!-- Tasks will appear here -->
+  <ul id="taskList"></ul>
+
+  <script>
+    // All tasks will be kept in this array in memory
+    let tasks = [];
+
+    // Get references to DOM elements
+    const taskInput = document.getElementById("taskInput");
+    const addBtn = document.getElementById("addBtn");
+    const searchInput = document.getElementById("searchInput");
+    const taskList = document.getElementById("taskList");
+
+    // Load tasks from localStorage when page opens
+    function loadTasks() {
+      const stored = localStorage.getItem("tasks");
+      if (stored) {
+        tasks = JSON.parse(stored); // convert JSON string to array
+      } else {
+        tasks = [];
+      }
+      renderTasks();
+    }
+
+    // Save current tasks array into localStorage
+    function saveTasks() {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    // Add a new task to the array
+    function addTask() {
+      const text = taskInput.value.trim();
+      if (!text) return; // ignore empty text
+
+      const newTask = {
+        id: Date.now(),      // simple unique id
+        text: text,
+        completed: false
+      };
+
+      tasks.push(newTask);
+      saveTasks();
+      renderTasks();
+      taskInput.value = ""; // clear input box
+    }
+
+    // Toggle completed status by id
+    function toggleTask(id) {
+      tasks = tasks.map(task =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      );
+      saveTasks();
+      renderTasks();
+    }
+
+    // Delete a task by id
+    function deleteTask(id) {
+      tasks = tasks.filter(task => task.id !== id);
+      saveTasks();
+      renderTasks();
+    }
+
+    // Draw the tasks on the screen, with optional search filter
+    function renderTasks() {
+      const searchText = searchInput.value.toLowerCase();
+      taskList.innerHTML = ""; // clear list
+
+      tasks
+        .filter(task =>
+          task.text.toLowerCase().includes(searchText)
+        )
+        .forEach(task => {
+          // create li
+          const li = document.createElement("li");
+
+          // left side: checkbox and text
+          const leftDiv = document.createElement("div");
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = task.completed;
+          checkbox.addEventListener("change", () => toggleTask(task.id));
+
+          const span = document.createElement("span");
+          span.textContent = " " + task.text;
+          span.className = "task-text";
+          if (task.completed) {
+            span.classList.add("completed");
+          }
+
+          leftDiv.appendChild(checkbox);
+          leftDiv.appendChild(span);
+
+          // right side: delete button
+          const delBtn = document.createElement("button");
+          delBtn.textContent = "Delete";
+          delBtn.addEventListener("click", () => deleteTask(task.id));
+
+          li.appendChild(leftDiv);
+          li.appendChild(delBtn);
+
+          taskList.appendChild(li);
+        });
+    }
+
+    // Event listeners
+    addBtn.addEventListener("click", addTask);
+
+    // Allow Enter key to add task
+    taskInput.addEventListener("keyup", event => {
+      if (event.key === "Enter") addTask();
+    });
+
+    // Search in real time
+    searchInput.addEventListener("input", renderTasks);
+
+    // First load
+    loadTasks();
+  </script>
+</body>
+</html>
