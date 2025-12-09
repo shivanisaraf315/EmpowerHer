@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home | Modular Todos App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #f3f4f6;
+    }
+    .page {
+      max-width: 800px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 18px rgba(15,23,42,0.08);
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-root"></div>
+
+  <main class="page">
+    <div class="card">
+      <h1>Welcome to the Modular Todos App</h1>
+      <p>This project demonstrates modular JavaScript with ES modules, localStorage authentication, and fetching todos from an API.</p>
+      <ul>
+        <li>Signup and store user details</li>
+        <li>Login and access the Todos page</li>
+        <li>Todos fetched from JSONPlaceholder</li>
+      </ul>
+      <p>
+        Start by <a href="signup.html">signing up</a> or go directly to
+        <a href="login.html">login</a>.
+      </p>
+    </div>
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script type="module">
+    import navbar from "./js/navbar.js";
+    import footer from "./js/footer.js";
+
+    document.getElementById("navbar-root").innerHTML = navbar();
+    document.getElementById("footer-root").innerHTML = footer();
+  </script>
+</body>
+</html>

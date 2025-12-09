@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Todos | Modular Todos App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #f3f4f6;
+    }
+    .page {
+      max-width: 900px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+    h2 {
+      margin-bottom: 8px;
+    }
+    .info {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 16px;
+    }
+    .todos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .todo-card {
+      background: white;
+      padding: 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(15,23,42,0.07);
+      font-size: 14px;
+    }
+    .todo-title {
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .todo-status {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .completed {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    .pending {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    .msg {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-root"></div>
+
+  <main class="page">
+    <h2>Todos</h2>
+    <p class="info">
+      This page is protected. You can see it only after login. Todos are fetched from
+      <code>https://jsonplaceholder.typicode.com/todos</code>.
+    </p>
+    <button id="logout-btn" style="
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: none;
+      background: #ef4444;
+      color: white;
+      font-size: 13px;
+      cursor: pointer;
+      margin-bottom: 16px;
+    ">
+      Logout
+    </button>
+
+    <div id="todosContainer" class="todos-grid"></div>
+    <div class="msg" id="todos-msg"></div>
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script type="module" src="./js/todos.js"></script>
+</body>
+</html>
