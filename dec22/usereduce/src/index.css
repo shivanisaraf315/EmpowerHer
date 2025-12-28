@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f6f7fb;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111;
+}
+
+.ms-wrap {
+  max-width: 520px;
+  margin: 30px auto;
+  padding: 0 16px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  padding: 18px;
+  margin-top: 12px;
+}
+
+.label {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d9d9d9;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #c7d2fe;
+}
+
+.err {
+  color: #b00020;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btn {
+  border: 1px solid #c7d2fe;
+  background: #eef2ff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn.secondary {
+  background: #fff;
+}
+
+.btn.danger {
+  margin-top: 14px;
+  border-color: #fecaca;
+  background: #fff1f2;
+}
+
+.review {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f4f6ff;
+  border: 1px solid #e6e6e6;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-weight: 800;
+}
+
+.dot.active {
+  border-color: #c7d2fe;
+  background: #eef2ff;
+}
+
+.line {
+  flex: 1;
+  height: 2px;
+  background: #e6e6e6;
+}
