@@ -1,0 +1,136 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f6f7fb;
+  color: #111;
+}
+
+.page {
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.label {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d9d9d9;
+  outline: none;
+}
+
+.btn {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #c7d2fe;
+  background: #eef2ff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn.secondary {
+  background: #fff;
+}
+
+.btn.danger {
+  border-color: #fecaca;
+  background: #fff1f2;
+}
+
+.hint { margin-top: 12px; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace; }
+.muted { opacity: 0.75; }
+.tiny { font-size: 12px; }
+
+.admin { min-height: 100vh; }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e6e6e6;
+  background: #fff;
+}
+
+.nav-title { font-weight: 900; }
+
+.admin-body {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+
+.sidebar { position: sticky; top: 14px; height: fit-content; }
+.content { padding: 0 8px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* responsive */
+@media (max-width: 1000px) {
+  .admin-body { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 650px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.fleet-card {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  overflow: hidden;
+  display: grid;
+  gap: 10px;
+}
+
+.fleet-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.fleet-info { padding: 0 12px; display: grid; gap: 6px; }
+
+.actions {
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  font-weight: 800;
+}
+.tag.ok { background: #ecfdf5; border-color: #a7f3d0; }
+.tag.bad { background: #fff1f2; border-color: #fecaca; }
