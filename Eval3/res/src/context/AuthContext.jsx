@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from "
 
 const AuthContext = createContext(null);
 
-const VALID_USERS = [
+const USERS = [
   { role: "admin", email: "admin@gmail.com", password: "admin1234" },
   { role: "customer", email: "customer@gmail.com", password: "customer1234" },
 ];
@@ -16,15 +16,11 @@ export function AuthProvider({ children }) {
     try {
       const raw = localStorage.getItem(AUTH_KEY);
       if (raw) setUser(JSON.parse(raw));
-    } catch {
-      setUser(null);
-    }
+    } catch {}
   }, []);
 
   const login = (email, password) => {
-    const found = VALID_USERS.find(
-      (u) => u.email === email.trim() && u.password === password
-    );
+    const found = USERS.find((u) => u.email === email.trim() && u.password === password);
     if (!found) return { ok: false, message: "Invalid email or password." };
 
     const payload = { role: found.role, email: found.email };
