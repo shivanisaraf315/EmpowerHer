@@ -41,7 +41,7 @@ export default function Login() {
               className="input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@gmail.com or customer@gmail.com"
+              placeholder="name@gmail.com"
             />
 
             <label className="label">Password</label>
@@ -50,18 +50,13 @@ export default function Login() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="admin1234 or customer1234"
+              placeholder="1234...."
             />
 
             <button className="btn btnPrimary" style={{ width: "100%", marginTop: 14 }}>
               Login
             </button>
           </form>
-
-          <div style={{ marginTop: 14 }} className="small">
-            <div>Admin: admin@gmail.com / admin1234</div>
-            <div>Customer: customer@gmail.com / customer1234</div>
-          </div>
         </div>
       </div>
     </div>
