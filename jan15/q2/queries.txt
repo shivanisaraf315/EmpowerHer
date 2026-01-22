@@ -1,0 +1,224 @@
+Q2: SQL CRUD Operations (Hands-On) using Supabase SQL Editor
+
+============================================================
+1) CREATE TABLE
+============================================================
+SQL:
+CREATE TABLE IF NOT EXISTS students (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  age INTEGER NOT NULL CHECK (age > 0),
+  course TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+Output:
+Success. No rows returned.
+
+------------------------------------------------------------
+(Optional) VERIFY COLUMNS
+------------------------------------------------------------
+SQL:
+SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_name = 'students'
+ORDER BY ordinal_position;
+
+Output (example):
+ column_name | data_type
+------------+--------------------------
+ id         | integer
+ name       | text
+ email      | text
+ age        | integer
+ course     | text
+ created_at | timestamp without time zone
+
+
+============================================================
+2) INSERT DATA (8 RECORDS)
+============================================================
+SQL:
+INSERT INTO students (name, email, age, course)
+VALUES
+  ('Aarav Sharma', 'aarav.sharma@gmail.com', 19, 'Data Science'),
+  ('Priya Iyer', 'priya.iyer@gmail.com', 22, 'Web Development'),
+  ('Rohan Mehta', 'rohan.mehta@gmail.com', 21, 'Data Science'),
+  ('Sneha Reddy', 'sneha.reddy@gmail.com', 20, 'Cyber Security'),
+  ('Kunal Verma', 'kunal.verma@gmail.com', 23, 'Cloud Computing'),
+  ('Ananya Singh', 'ananya.singh@gmail.com', 18, 'Web Development'),
+  ('Vikram Nair', 'vikram.nair@gmail.com', 24, 'AI & ML'),
+  ('Meera Patel', 'meera.patel@gmail.com', 21, 'Cyber Security');
+
+Output:
+INSERT 0 8
+
+
+============================================================
+3) READ DATA QUERIES
+============================================================
+
+3.1) Fetch all students
+SQL:
+SELECT * FROM students ORDER BY id;
+
+Output (example):
+ id |     name       |          email            | age |      course        |       created_at
+----+----------------+---------------------------+-----+--------------------+------------------------
+  1 | Aarav Sharma   | aarav.sharma@gmail.com    |  19 | Data Science       | 2026-01-22 12:10:01
+  2 | Priya Iyer     | priya.iyer@gmail.com      |  22 | Web Development    | 2026-01-22 12:10:01
+  3 | Rohan Mehta    | rohan.mehta@gmail.com     |  21 | Data Science       | 2026-01-22 12:10:01
+  4 | Sneha Reddy    | sneha.reddy@gmail.com     |  20 | Cyber Security     | 2026-01-22 12:10:01
+  5 | Kunal Verma    | kunal.verma@gmail.com     |  23 | Cloud Computing    | 2026-01-22 12:10:01
+  6 | Ananya Singh   | ananya.singh@gmail.com    |  18 | Web Development    | 2026-01-22 12:10:01
+  7 | Vikram Nair    | vikram.nair@gmail.com     |  24 | AI & ML            | 2026-01-22 12:10:01
+  8 | Meera Patel    | meera.patel@gmail.com     |  21 | Cyber Security     | 2026-01-22 12:10:01
+
+
+3.2) Fetch students older than 20
+SQL:
+SELECT * FROM students
+WHERE age > 20
+ORDER BY age DESC;
+
+Output (example):
+ id |    name      |         email            | age |      course        |       created_at
+----+--------------+--------------------------+-----+--------------------+------------------------
+  7 | Vikram Nair  | vikram.nair@gmail.com    |  24 | AI & ML            | 2026-01-22 12:10:01
+  5 | Kunal Verma  | kunal.verma@gmail.com    |  23 | Cloud Computing    | 2026-01-22 12:10:01
+  2 | Priya Iyer   | priya.iyer@gmail.com     |  22 | Web Development    | 2026-01-22 12:10:01
+  3 | Rohan Mehta  | rohan.mehta@gmail.com    |  21 | Data Science       | 2026-01-22 12:10:01
+  8 | Meera Patel  | meera.patel@gmail.com    |  21 | Cyber Security     | 2026-01-22 12:10:01
+
+
+3.3) Fetch only name and email columns
+SQL:
+SELECT name, email
+FROM students
+ORDER BY name;
+
+Output (example):
+     name       |          email
+----------------+---------------------------
+ Aarav Sharma   | aarav.sharma@gmail.com
+ Ananya Singh   | ananya.singh@gmail.com
+ Kunal Verma    | kunal.verma@gmail.com
+ Meera Patel    | meera.patel@gmail.com
+ Priya Iyer     | priya.iyer@gmail.com
+ Rohan Mehta    | rohan.mehta@gmail.com
+ Sneha Reddy    | sneha.reddy@gmail.com
+ Vikram Nair    | vikram.nair@gmail.com
+
+
+3.4) Fetch students enrolled in a specific course (Data Science)
+SQL:
+SELECT * FROM students
+WHERE course = 'Data Science'
+ORDER BY id;
+
+Output (example):
+ id |    name      |         email            | age |    course     |       created_at
+----+--------------+--------------------------+-----+---------------+------------------------
+  1 | Aarav Sharma | aarav.sharma@gmail.com   |  19 | Data Science  | 2026-01-22 12:10:01
+  3 | Rohan Mehta  | rohan.mehta@gmail.com    |  21 | Data Science  | 2026-01-22 12:10:01
+
+
+============================================================
+4) UPDATE DATA QUERIES
+============================================================
+
+4.1) Update the age of one student (Aarav age from 19 to 20)
+SQL:
+UPDATE students
+SET age = 20
+WHERE email = 'aarav.sharma@gmail.com';
+
+Output:
+UPDATE 1
+
+Verify:
+SQL:
+SELECT * FROM students
+WHERE email = 'aarav.sharma@gmail.com';
+
+Output (example):
+ id |    name      |        email           | age |    course     |       created_at
+----+--------------+------------------------+-----+---------------+------------------------
+  1 | Aarav Sharma | aarav.sharma@gmail.com |  20 | Data Science  | 2026-01-22 12:10:01
+
+
+4.2) Update course for all students enrolled in one course
+Change: Web Development -> Full Stack Development
+SQL:
+UPDATE students
+SET course = 'Full Stack Development'
+WHERE course = 'Web Development';
+
+Output:
+UPDATE 2
+
+Verify:
+SQL:
+SELECT id, name, course
+FROM students
+WHERE course = 'Full Stack Development'
+ORDER BY id;
+
+Output (example):
+ id |     name      |         course
+----+---------------+--------------------------
+  2 | Priya Iyer    | Full Stack Development
+  6 | Ananya Singh  | Full Stack Development
+
+
+============================================================
+5) DELETE DATA QUERIES
+============================================================
+
+5.1) Delete one student using id (delete id = 6)
+SQL:
+DELETE FROM students
+WHERE id = 6;
+
+Output:
+DELETE 1
+
+Verify:
+SQL:
+SELECT id, name FROM students ORDER BY id;
+
+Output (example):
+ id |     name
+----+----------------
+  1 | Aarav Sharma
+  2 | Priya Iyer
+  3 | Rohan Mehta
+  4 | Sneha Reddy
+  5 | Kunal Verma
+  7 | Vikram Nair
+  8 | Meera Patel
+
+
+5.2) Delete all students below a certain age (delete age < 20)
+SQL:
+DELETE FROM students
+WHERE age < 20;
+
+Output (example, depends on your data):
+DELETE 0
+
+Final Verify:
+SQL:
+SELECT * FROM students ORDER BY id;
+
+Output (example):
+ id |     name      |          email           | age |        course              |       created_at
+----+---------------+--------------------------+-----+----------------------------+------------------------
+  1 | Aarav Sharma  | aarav.sharma@gmail.com   |  20 | Data Science               | 2026-01-22 12:10:01
+  2 | Priya Iyer    | priya.iyer@gmail.com     |  22 | Full Stack Development     | 2026-01-22 12:10:01
+  3 | Rohan Mehta   | rohan.mehta@gmail.com    |  21 | Data Science               | 2026-01-22 12:10:01
+  4 | Sneha Reddy   | sneha.reddy@gmail.com    |  20 | Cyber Security             | 2026-01-22 12:10:01
+  5 | Kunal Verma   | kunal.verma@gmail.com    |  23 | Cloud Computing            | 2026-01-22 12:10:01
+  7 | Vikram Nair   | vikram.nair@gmail.com    |  24 | AI & ML                    | 2026-01-22 12:10:01
+  8 | Meera Patel   | meera.patel@gmail.com    |  21 | Cyber Security             | 2026-01-22 12:10:01
