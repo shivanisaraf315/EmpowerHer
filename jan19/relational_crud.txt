@@ -1,0 +1,101 @@
+RELATIONAL SQL CRUD (users & orders) - relational_crud.txt
+
+TABLES USED:
+- users
+- orders
+Explanation: This file creates two related tables (users, orders) with a foreign key and performs full CRUD operations with relational reads.
+
+============================================================
+STEP 1: CREATE TABLES WITH RELATIONSHIPS
+============================================================
+
+1) Create users table
+Tables: users
+Explanation: Creates users table with primary key and timestamps.
+SQL:
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+Output:
+Success. No rows returned.
+
+------------------------------------------------------------
+
+2) Create orders table (with FK → users.id)
+Tables: orders, users
+Explanation: Creates orders table linked to users using a foreign key.
+SQL:
+CREATE TABLE IF NOT EXISTS orders (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  amount INTEGER NOT NULL CHECK (amount >= 0),
+  status TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+Output:
+Success. No rows returned.
+
+============================================================
+STEP 2: INSERT DATA
+============================================================
+
+3) Insert at least 5 users
+Tables: users
+Explanation: Inserts 5 users with realistic values.
+SQL:
+INSERT INTO users (name, email)
+VALUES
+  ('Aarav Sharma', 'aarav.sharma@gmail.com'),
+  ('Priya Iyer', 'priya.iyer@gmail.com'),
+  ('Rohan Mehta', 'rohan.mehta@gmail.com'),
+  ('Sneha Reddy', 'sneha.reddy@gmail.com'),
+  ('Kunal Verma', 'kunal.verma@gmail.com');
+Output:
+INSERT 0 5
+
+------------------------------------------------------------
+
+4) Verify inserted users (to know ids)
+Tables: users
+Explanation: Reads users so we can reference their ids in orders.
+SQL:
+SELECT * FROM users ORDER BY id;
+Output:
+(Paste output from Supabase here)
+
+------------------------------------------------------------
+
+5) Insert 10 orders (one user has multiple orders)
+Tables: orders, users
+Explanation: Inserts 10 orders referencing valid users using user_id.
+SQL:
+INSERT INTO orders (user_id, amount, status)
+VALUES
+  (1, 1200, 'placed'),
+  (1, 800, 'shipped'),
+  (1, 450, 'delivered'),
+  (2, 2000, 'placed'),
+  (2, 1500, 'cancelled'),
+  (3, 999, 'placed'),
+  (3, 500, 'delivered'),
+  (4, 300, 'placed'),
+  (5, 2200, 'shipped'),
+  (5, 1750, 'delivered');
+Output:
+INSERT 0 10
+
+------------------------------------------------------------
+
+6) Verify inserted orders
+Tables: orders
+Explanation: Confirms order rows are created and linked to users.
+SQL:
+SELECT * FROM orders ORDER BY id;
+Output:
+(Paste output from Supabase here)
+
+============================================================
+STEP 3: R
