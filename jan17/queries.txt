@@ -1,0 +1,148 @@
+ADVANCED SQL FUNCTIONS (Single Table) - advanced_queries.txt
+
+TABLES USED:
+- students
+Explanation: All queries below perform advanced READ operations using SQL built-in functions on the existing students table.
+
+============================================================
+STEP 2: AGGREGATE QUERIES
+============================================================
+
+1) Count the total number of students
+Tables: students
+Explanation: Counts all rows in students.
+SQL:
+SELECT COUNT(*) AS total_students
+FROM students;
+Output:
+(Paste output from Supabase here)
+
+------------------------------------------------------------
+
+2) Find the average age of students
+Tables: students
+Explanation: Calculates average age across all students.
+SQL:
+SELECT ROUND(AVG(age), 2) AS average_age
+FROM students;
+Output:
+(Paste output from Supabase here)
+
+------------------------------------------------------------
+
+3) Find the minimum and maximum age
+Tables: students
+Explanation: Returns the smallest and largest age values.
+SQL:
+SELECT MIN(age) AS min_age, MAX(age) AS max_age
+FROM students;
+Output:
+(Paste output from Supabase here)
+
+------------------------------------------------------------
+
+4) Count how many students are enrolled in each course
+Tables: students
+Explanation: Groups by course and counts students per course.
+SQL:
+SELECT course, COUNT(*) AS students_in_course
+FROM students
+GROUP BY course
+ORDER BY course;
+Output:
+(Paste output from Supabase here)
+
+------------------------------------------------------------
+
+5) Count students whose age is greater than 20
+Tables: students
+Explanation: Counts students where age > 20.
+SQL:
+SELECT COUNT(*) AS students_age_gt_20
+FROM students
+WHERE age > 20;
+Output:
+(Paste output from Supabase here)
+
+============================================================
+STEP 3: GROUPING & FILTERING
+============================================================
+
+6) Display course-wise student count
+Tables: students
+Explanation: Shows each course and number of students in it.
+SQL:
+SELECT course, COUNT(*) AS student_count
+FROM students
+GROUP BY course
+ORDER BY course;
+Output:
+(Paste output from Supabase here)
+
+------------------------------------------------------------
+
+7) Display only courses where student count is greater than 1
+Tables: students
+Explanation: Filters grouped results using HAVING to keep courses with more than 1 student.
+SQL:
+SELECT course, COUNT(*) AS student_count
+FROM students
+GROUP BY course
+HAVING COUNT(*) > 1
+ORDER BY student_count DESC;
+Output:
+(Paste output from Supabase here)
+
+------------------------------------------------------------
+
+8) Display courses sorted by highest student count first
+Tables: students
+Explanation: Sorts courses by number of students in descending order.
+SQL:
+SELECT course, COUNT(*) AS student_count
+FROM students
+GROUP BY course
+ORDER BY student_count DESC, course;
+Output:
+(Paste output from Supabase here)
+
+============================================================
+STEP 4: ORDERING & LIMITING
+============================================================
+
+9) Fetch the latest 3 students based on created_at
+Tables: students
+Explanation: Returns the most recently created 3 student records.
+SQL:
+SELECT *
+FROM students
+ORDER BY created_at DESC
+LIMIT 3;
+Output:
+(Paste output from Supabase here)
+
+------------------------------------------------------------
+
+10) Fetch the top 5 oldest students
+Tables: students
+Explanation: Returns 5 students with highest age.
+SQL:
+SELECT *
+FROM students
+ORDER BY age DESC, id ASC
+LIMIT 5;
+Output:
+(Paste output from Supabase here)
+
+------------------------------------------------------------
+
+11) Fetch students enrolled in a specific course, sorted by age (descending)
+Tables: students
+Explanation: Filters by a chosen course and sorts students by age from highest to lowest.
+SQL:
+SELECT *
+FROM students
+WHERE course = 'Data Science'
+ORDER BY age DESC, id ASC;
+Output:
+(Paste output from Supabase here)
